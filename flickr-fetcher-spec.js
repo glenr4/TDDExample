@@ -109,7 +109,7 @@ describe('#transformPhotoObj()', function() {
 describe('#fetchFlickrData()', function() {
     it(
         'should take an API key and fetcher function argument and return a promise for JSON data.',
-        function(done) {
+        function() {
             var apiKey      = 'does not matter much what this is right now',
                 fakeData    = {
                     'photos': {
@@ -146,9 +146,8 @@ describe('#fetchFlickrData()', function() {
                     expect(url).to.equal(expectedURL)
                     return Promise.resolve(fakeData);
                 };
-            FlickrFetcher.fetchFlickrData(apiKey, fakeFetcher).then(function(actual) {
+            return FlickrFetcher.fetchFlickrData(apiKey, fakeFetcher).then(function(actual) {
                 expect(actual).to.eql(fakeData);
-                done();
             }
         );
 
